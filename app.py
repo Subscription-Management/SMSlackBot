@@ -1,5 +1,6 @@
 from flask import abort, Flask, jsonify, request
 from app_handle_requests import HandleRequests
+
 app = Flask(__name__)
 
 
@@ -14,6 +15,11 @@ def post_buy_now():
 @app.route('/handle_user_action', methods=['POST'])
 def handle_user_action():
     return HandleRequests.handle_user_action(request)
+
+
+@app.route('/payment_confirmation', methods=['POST'])
+def handle_user_action():
+    return HandleRequests.payment_confirmation(request)
 
 
 if __name__ == '__main__':

@@ -35,6 +35,17 @@ class HandleRequests:
                                                 text="Deal", blocks=blocks)
 
     @staticmethod
+    def payment_confirmation(request):
+        req_json = request.json
+        print(req_json)
+        slack = Slack(Config.slack_bot_token)
+
+        channel_id = req_json["channelId"]
+        message = "Payment " + req_json["paymentNumber"] + " was successful"
+        slack.post_message(channel_id, message)
+
+
+    @staticmethod
     def handle_user_action(request):
 
         # If the request can't be verified from Slack, return verification failed
@@ -78,7 +89,8 @@ class HandleRequests:
     def build_buy_now_message(sf_json):
         blocks = []
 
-        blocks.append(BlockKit.slack_mbuilder_section("*This sale expires in 24 Hours! Act Now!* \n\n*" + sf_json.product_name + "*"))
+        blocks.append(BlockKit.slack_mbuilder_section(
+            "*This sale expires in 24 Hours! Act Now!* \n\n*" + sf_json.product_name + "*"))
         # header = ":flashing-siren: FLASH SALE :flashing-siren:\n\n*" + sf_json.product_name + "*"
         # blocks.append(BlockKit.slack_mbuilder_section(header))
         blocks.append(BlockKit.slack_mbuilder_divider())
@@ -136,7 +148,7 @@ class HandleRequests:
                                 security_token=Config.sf_security_token, client_id=Config.sf_client_id,
                                 client_secret=Config.sf_client_secret)
         endpoint = Config.sf_org_url + Config.sf_fire_sale_buy_now_endpoint
-        data = '{"inputs": [{"fireSaleId" : "' + fire_sale_id + '"}]}'
+        data = '{"inputs": [{"fireSaleId" : "' + fire_sale_id + '", "slackChannelId": "' + channel_id + '"}]}'
         headers = salesforce.get_headers()
         sf_res = salesforce.post(endpoint=endpoint, headers=headers, data=data)
         print(sf_res.json())
@@ -144,6 +156,6 @@ class HandleRequests:
         slack = Slack(Config.slack_bot_token)
         if SalesforceParser.is_buy_now_success(sf_res.json()):
             order_number = SalesforceParser.get_order_number(sf_res.json())
-            slack.post_message(channel_id, "Order " + order_number + " was created successfully")
+            slack.post_message(channel_id, "Order " + order_number + " was created")
         else:
             slack.post_message(channel_id, "We couldn't create the order")
