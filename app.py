@@ -19,7 +19,8 @@ def handle_user_action():
 
 @app.route('/payment_confirmation', methods=['POST'])
 def payment_confirmation():
-    return HandleRequests.payment_confirmation(request)
+    HandleRequests.payment_confirmation(request)
+    return jsonify(success=True)
 
 
 if __name__ == '__main__':
