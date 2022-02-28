@@ -18,7 +18,7 @@ def handle_user_action():
 
 
 @app.route('/payment_confirmation', methods=['POST'])
-def handle_user_action():
+def payment_confirmation():
     return HandleRequests.payment_confirmation(request)
 
 

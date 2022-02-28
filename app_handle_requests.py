@@ -44,7 +44,6 @@ class HandleRequests:
         message = "Payment " + req_json["paymentNumber"] + " was successful"
         slack.post_message(channel_id, message)
 
-
     @staticmethod
     def handle_user_action(request):
 
