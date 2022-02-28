@@ -28,11 +28,11 @@ class HandleRequests:
 
             # Welcome message
             slack.post_message(channel_id,
-                               "Welcome to the " + channel_name + " channel <@" + sf_json.slack_user_id + ">")
+                               "<@" + sf_json.slack_user_id + ">")
 
             blocks = HandleRequests.build_buy_now_message(sf_json)
             slack.post_block_message_to_channel(channel_id=channel_id,
-                                                text="This deal is only available for 24 hours!", blocks=blocks)
+                                                text="Deal", blocks=blocks)
 
     @staticmethod
     def handle_user_action(request):
@@ -78,9 +78,9 @@ class HandleRequests:
     def build_buy_now_message(sf_json):
         blocks = []
 
-        blocks.append(BlockKit.slack_mbuilder_section("This sale expires in 24 Hours! Act Now!"))
-        header = ":flashing-siren: FLASH SALE :flashing-siren:\n\n*" + sf_json.product_name + "*"
-        blocks.append(BlockKit.slack_mbuilder_section(header))
+        blocks.append(BlockKit.slack_mbuilder_section("*This sale expires in 24 Hours! Act Now!* \n\n*" + sf_json.product_name + "*"))
+        # header = ":flashing-siren: FLASH SALE :flashing-siren:\n\n*" + sf_json.product_name + "*"
+        # blocks.append(BlockKit.slack_mbuilder_section(header))
         blocks.append(BlockKit.slack_mbuilder_divider())
 
         text = "*List Price:* $" + str(sf_json.list_price) + " \n*Quantity:* " + str(
