@@ -40,7 +40,7 @@ class HandleRequests:
         print(req_json)
         slack = Slack(Config.slack_bot_token)
 
-        channel_id = req_json["channelId"]
+        channel_id = req_json["slackChannelId"]
         message = "Payment " + req_json["paymentNumber"] + " was successful"
         slack.post_message(channel_id, message)
 
