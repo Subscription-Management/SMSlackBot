@@ -16,7 +16,7 @@ class HandleRequests:
         slack = Slack(Config.slack_bot_token)
 
         if SalesforceJSON.is_valid_request(request.json):
-            channel_name = "fire-sale-" + str(Util.current_milli_time())
+            channel_name = "promotional-offer-" + str(Util.current_milli_time())
             sf_json = SalesforceJSON.parse_json(request.json)
 
             # Create New Channel
