@@ -1,0 +1,42 @@
+{
+  "name": "SM Slack Bot",
+  "description": "This app does one little thing, and does it well.",
+  "repository": "https://github.com/dgunaseelan/SMSlackBot",
+  "env": {
+    "SF_CLIENT_ID": {
+      "description": "Client Id of the Salesforce Connected App"
+    },
+    "SF_CLIENT_SECRET": {
+      "description": "Client Secret of the Salesforce Connected App"
+    },
+    "SF_ORG_URL": {
+      "description": "Salesforce Org URL"
+    },
+    "SF_OAUTH_URL": {
+      "description": "Salesforce OAUTH URL",
+      "value" : "https://login.salesforce.com/services/oauth2/token"
+    },
+    "SF_USERNAME": {
+      "description": "Salesforce Username"
+    },
+    "SF_PASSWORD": {
+      "description": "Salesforce Password"
+    },
+    "SF_SECURITY_TOKEN": {
+      "description": "Salesforce Security Token"
+    },
+    "SLACK_BOT_TOKEN": {
+      "description": "Bot token copied from Slack App"
+    },
+    "SLACK_USER_TOKEN": {
+      "description": "User token copied from Slack App"
+    },
+    "SLACK_SIGNING_SECRET": {
+      "description": "Signing Secret copied from Slack App"
+    },
+    "SF_FIRE_SALE_BUY_NOW_ENDPOINT": {
+      "description": "Promotional Sale Flow Endpoint",
+      "value" : "/services/data/v54.0/actions/custom/flow/Fire_Sale_Buy_Now"
+    }
+  }
+}
