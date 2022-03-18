@@ -1,5 +1,3 @@
-import datetime
-
 from util_salesforce import SalesforceJSON, Salesforce, SalesforceParser
 from util_slack import BlockKit, Slack, SlackParser
 from util import Util
@@ -90,8 +88,6 @@ class HandleRequests:
 
         blocks.append(BlockKit.slack_mbuilder_section(
             "*This sale expires in 24 Hours! Act Now!* \n\n*" + sf_json.product_name + "*"))
-        # header = ":flashing-siren: FLASH SALE :flashing-siren:\n\n*" + sf_json.product_name + "*"
-        # blocks.append(BlockKit.slack_mbuilder_section(header))
         blocks.append(BlockKit.slack_mbuilder_divider())
 
         text = "*List Price:* $" + str(sf_json.list_price) + " \n*Quantity:* " + str(
