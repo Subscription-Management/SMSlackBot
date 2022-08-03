@@ -36,7 +36,7 @@
     },
     "SF_FIRE_SALE_BUY_NOW_ENDPOINT": {
       "description": "Promotional Sale Flow Endpoint",
-      "value" : "/services/data/v54.0/actions/custom/flow/Fire_Sale_Buy_Now"
+      "value" : "/services/data/v54.0/actions/custom/flow/SM_Promo_Sale_Buy_Now"
     }
   }
 }
